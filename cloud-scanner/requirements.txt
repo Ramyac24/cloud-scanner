@@ -1,7 +1,7 @@
 # AI-Powered Cloud Misconfiguration Scanner
 
 # CLI
-typer[all]==0.12.3
+typer==0.12.3
 rich==13.7.1
 
 # API
