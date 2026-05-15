@@ -1,0 +1,23 @@
+# AI-Powered Cloud Misconfiguration Scanner
+
+# CLI
+typer[all]==0.12.3
+rich==13.7.1
+
+# API
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+pydantic==2.7.1
+python-multipart==0.0.9
+
+# Local LLM
+ollama==0.2.1
+
+# Parsing & analysis
+PyYAML==6.0.1
+python-hcl2==4.3.4
+regex==2024.4.16
+
+# Utilities
+python-dotenv==1.0.1
+pathspec==0.12.1
