@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cloud Scanner Report — /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs</title>
+<style>
+body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+        background:#0d1117;color:#c9d1d9;margin:0;padding:20px }
+h1   { color:#58a6ff }
+.summary { display:flex;gap:16px;margin:16px 0 }
+.stat { background:#161b22;border:1px solid #30363d;border-radius:8px;
+         padding:12px 20px;text-align:center }
+.stat-val { font-size:2rem;font-weight:700;color:#58a6ff }
+.stat-lbl { font-size:0.8rem;color:#8b949e }
+.finding { background:#161b22;border-radius:8px;margin:12px 0;padding:12px 16px }
+.finding-header { display:flex;align-items:center;gap:12px;margin-bottom:6px }
+.rule-id { background:#21262d;padding:2px 8px;border-radius:4px;font-family:monospace;font-size:0.85rem }
+.severity { font-weight:700;font-size:0.9rem }
+.title { font-weight:600 }
+.meta { font-size:0.8rem;color:#8b949e;margin:4px 0 }
+.evidence { background:#0d1117;padding:6px 10px;border-radius:4px;font-size:0.82rem;margin:6px 0 }
+.description { font-size:0.87rem;color:#8b949e }
+.ai-box { background:#0a2a1a;border-left:3px solid #3fb950;padding:8px 12px;margin:8px 0;border-radius:4px;font-size:0.87rem }
+.fix-box { background:#0a1a2a;border-left:3px solid #58a6ff;padding:8px 12px;margin:8px 0;border-radius:4px }
+.fix-box pre { margin:4px 0;font-size:0.82rem;white-space:pre-wrap;color:#c9d1d9 }
+</style>
+</head>
+<body>
+<h1>☁ Cloud Misconfiguration Scanner</h1>
+<p style="color:#8b949e">Target: <b style="color:#c9d1d9">/Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs</b> &nbsp;|&nbsp;
+  Scanned: 2026-05-15T22:17:08 &nbsp;|&nbsp;
+  Files: 2</p>
+
+<div class="summary">
+  <div class="stat"><div class="stat-val">33</div><div class="stat-lbl">Total Findings</div></div>
+  <div class="stat"><div class="stat-val" style="color:#ff4444">13</div><div class="stat-lbl">Critical</div></div>
+  <div class="stat"><div class="stat-val" style="color:#ff8800">15</div><div class="stat-lbl">High</div></div>
+  <div class="stat"><div class="stat-val" style="color:#ffcc00">5</div><div class="stat-lbl">Medium</div></div>
+  <div class="stat"><div class="stat-val">255</div><div class="stat-lbl">Risk Score</div></div>
+</div>
+
+<h2 style="color:#58a6ff">Findings</h2>
+
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">TF001</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">S3 Bucket Has Public ACL</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_s3_bucket.data_lake</span>
+  </div>
+  <div class="evidence"><code>acl = "public-read"</code></div>
+  <div class="description">S3 bucket ACL allows public access, exposing all stored objects to the internet.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">TF001</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">S3 Bucket Has Public ACL</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_s3_bucket.backups</span>
+  </div>
+  <div class="evidence"><code>acl = "public-read-write"</code></div>
+  <div class="description">S3 bucket ACL allows public access, exposing all stored objects to the internet.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">TF010</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">Security Group Allows All Inbound Traffic</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_security_group.web_sg</span>
+  </div>
+  <div class="evidence"><code>protocol = "-1", cidr_blocks = ["0.0.0.0/0"]</code></div>
+  <div class="description">Security group ingress rule allows ALL traffic from the internet (0.0.0.0/0).</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">TF012</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">Security Group Exposes SSH Port 22 to Internet</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_security_group.bastion_sg</span>
+  </div>
+  <div class="evidence"><code>from_port = 22, to_port = 22, cidr_blocks = ["0.0.0.0/0"]</code></div>
+  <div class="description">Inbound rule allows SSH (port 22) from 0.0.0.0/0. This is a common attack vector.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">TF019</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">Security Group Exposes RDP Port 3389 to Internet</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_security_group.bastion_sg</span>
+  </div>
+  <div class="evidence"><code>from_port = 3389, to_port = 3389, cidr_blocks = ["0.0.0.0/0"]</code></div>
+  <div class="description">Inbound rule allows RDP (port 3389) from 0.0.0.0/0. This is a common attack vector.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">TF030</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">RDS Instance Is Publicly Accessible</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_db_instance.main_db</span>
+  </div>
+  <div class="evidence"><code>publicly_accessible = true</code></div>
+  <div class="description">Database instance is reachable from the internet. This is a critical exposure risk.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">TF030</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">RDS Instance Is Publicly Accessible</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_db_instance.analytics_db</span>
+  </div>
+  <div class="evidence"><code>publicly_accessible = true</code></div>
+  <div class="description">Database instance is reachable from the internet. This is a critical exposure risk.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">SEC001</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">AWS Access Key ID</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 8</span>
+    
+  </div>
+  <div class="evidence"><code>AKIAIOSFODNN7EXAMPLE</code></div>
+  <div class="description">Hardcoded AWS Access Key ID detected. If committed to VCS this is a critical exposure.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">SEC002</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">AWS Secret Access Key</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 9</span>
+    
+  </div>
+  <div class="evidence"><code>AWS_SECRET_ACCESS_KEY=wJal***EKEY</code></div>
+  <div class="description">AWS Secret Access Key pattern detected.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">SEC004</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">Private Key (PEM)</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 49</span>
+    
+  </div>
+  <div class="evidence"><code>-----BEGIN RSA PRIVATE KEY-----</code></div>
+  <div class="description">Private key material detected in file. This is a critical security risk.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">SEC007</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">GitHub Personal Access Token</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 12</span>
+    
+  </div>
+  <div class="evidence"><code>ghp_aBcDeFgHiJkLmNoPqRsTuVwXyZ1234567890</code></div>
+  <div class="description">GitHub Personal Access Token detected.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">SEC012</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">Stripe API Key</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 15</span>
+    
+  </div>
+  <div class="evidence"><code>sk_live_51AbCdEfGhIjKlMnOpQrStUvWxYz1234567890abcdefg</code></div>
+  <div class="description">Stripe API key detected.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff4444">
+  <div class="finding-header">
+    <span class="rule-id">SEC012</span>
+    <span class="severity" style="color:#ff4444">🔴 CRITICAL</span>
+    <span class="title">Stripe API Key</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 18</span>
+    
+  </div>
+  <div class="evidence"><code>pk_live_51AbCdEfGhIjKlMnOpQrStUvWxYz09876543210zyxwvut</code></div>
+  <div class="description">Stripe API key detected.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">TF002</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">S3 Bucket Missing Server-Side Encryption</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_s3_bucket.data_lake</span>
+  </div>
+  <div class="evidence"><code>server_side_encryption_configuration block is absent</code></div>
+  <div class="description">S3 bucket has no server-side encryption configured. Data at rest is unencrypted.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">TF002</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">S3 Bucket Missing Server-Side Encryption</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_s3_bucket.backups</span>
+  </div>
+  <div class="evidence"><code>server_side_encryption_configuration block is absent</code></div>
+  <div class="description">S3 bucket has no server-side encryption configured. Data at rest is unencrypted.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">TF012</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">Security Group Exposes PostgreSQL Port 5432 to Internet</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_security_group.db_sg</span>
+  </div>
+  <div class="evidence"><code>from_port = 5432, to_port = 5432, cidr_blocks = ["0.0.0.0/0"]</code></div>
+  <div class="description">Inbound rule allows PostgreSQL (port 5432) from 0.0.0.0/0. This is a common attack vector.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">TF016</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">Security Group Exposes MySQL Port 3306 to Internet</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_security_group.db_sg</span>
+  </div>
+  <div class="evidence"><code>from_port = 3306, to_port = 3306, cidr_blocks = ["0.0.0.0/0"]</code></div>
+  <div class="description">Inbound rule allows MySQL (port 3306) from 0.0.0.0/0. This is a common attack vector.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">TF017</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">Security Group Exposes MongoDB Port 27017 to Internet</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_security_group.db_sg</span>
+  </div>
+  <div class="evidence"><code>from_port = 27017, to_port = 27017, cidr_blocks = ["0.0.0.0/0"]</code></div>
+  <div class="description">Inbound rule allows MongoDB (port 27017) from 0.0.0.0/0. This is a common attack vector.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">TF019</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">Security Group Exposes Redis Port 6379 to Internet</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_security_group.db_sg</span>
+  </div>
+  <div class="evidence"><code>from_port = 6379, to_port = 6379, cidr_blocks = ["0.0.0.0/0"]</code></div>
+  <div class="description">Inbound rule allows Redis (port 6379) from 0.0.0.0/0. This is a common attack vector.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">TF031</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">RDS Storage Not Encrypted</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_db_instance.main_db</span>
+  </div>
+  <div class="evidence"><code>storage_encrypted = false (or missing)</code></div>
+  <div class="description">RDS database storage is not encrypted at rest.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">TF031</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">RDS Storage Not Encrypted</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_db_instance.analytics_db</span>
+  </div>
+  <div class="evidence"><code>storage_encrypted = false (or missing)</code></div>
+  <div class="description">RDS database storage is not encrypted at rest.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">TF041</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">EBS Volume Not Encrypted</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_ebs_volume.data_volume</span>
+  </div>
+  <div class="evidence"><code>encrypted = false (or missing)</code></div>
+  <div class="description">EBS volume is not encrypted. Data at rest is exposed.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">TF010</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">Security Group Exposes Elasticsearch Port 9200 to Internet</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_security_group.es_sg</span>
+  </div>
+  <div class="evidence"><code>from_port = 9200, to_port = 9200, cidr_blocks = ["0.0.0.0/0"]</code></div>
+  <div class="description">Inbound rule allows Elasticsearch (port 9200) from 0.0.0.0/0. This is a common attack vector.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">SEC003</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">Generic API Key</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 34</span>
+    
+  </div>
+  <div class="evidence"><code>API_KEY=AIza***4567</code></div>
+  <div class="description">Potential API key hardcoded in configuration.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">SEC003</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">Generic API Key</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 52</span>
+    
+  </div>
+  <div class="evidence"><code>API_KEY=sk-a***JKLM</code></div>
+  <div class="description">Potential API key hardcoded in configuration.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">SEC008</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">Slack Webhook / Token</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 21</span>
+    
+  </div>
+  <div class="evidence"><code>http***XXXX</code></div>
+  <div class="description">Slack API token or webhook URL detected.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">SEC008</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">Slack Webhook / Token</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 24</span>
+    
+  </div>
+  <div class="evidence"><code>xoxb***uvwx</code></div>
+  <div class="description">Slack API token or webhook URL detected.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ff8800">
+  <div class="finding-header">
+    <span class="rule-id">SEC009</span>
+    <span class="severity" style="color:#ff8800">🟠 HIGH</span>
+    <span class="title">Google API Key</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/bad_secrets.env line 34</span>
+    
+  </div>
+  <div class="evidence"><code>AIzaSyAbCdEfGhIjKlMnOpQrStUvWxYz-123456</code></div>
+  <div class="description">Google API key detected.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ffcc00">
+  <div class="finding-header">
+    <span class="rule-id">TF003</span>
+    <span class="severity" style="color:#ffcc00">🟡 MEDIUM</span>
+    <span class="title">S3 Bucket Versioning Disabled</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_s3_bucket.data_lake</span>
+  </div>
+  <div class="evidence"><code>versioning { enabled = false }</code></div>
+  <div class="description">Versioning is disabled. You cannot recover accidentally deleted or overwritten objects.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ffcc00">
+  <div class="finding-header">
+    <span class="rule-id">TF003</span>
+    <span class="severity" style="color:#ffcc00">🟡 MEDIUM</span>
+    <span class="title">S3 Bucket Versioning Disabled</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_s3_bucket.backups</span>
+  </div>
+  <div class="evidence"><code>versioning { enabled = false }</code></div>
+  <div class="description">Versioning is disabled. You cannot recover accidentally deleted or overwritten objects.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ffcc00">
+  <div class="finding-header">
+    <span class="rule-id">TF032</span>
+    <span class="severity" style="color:#ffcc00">🟡 MEDIUM</span>
+    <span class="title">RDS Automated Backups Disabled</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_db_instance.main_db</span>
+  </div>
+  <div class="evidence"><code>backup_retention_period = 0</code></div>
+  <div class="description">Automated backups are disabled (retention = 0). Data cannot be recovered.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ffcc00">
+  <div class="finding-header">
+    <span class="rule-id">TF032</span>
+    <span class="severity" style="color:#ffcc00">🟡 MEDIUM</span>
+    <span class="title">RDS Automated Backups Disabled</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_db_instance.analytics_db</span>
+  </div>
+  <div class="evidence"><code>backup_retention_period = 0</code></div>
+  <div class="description">Automated backups are disabled (retention = 0). Data cannot be recovered.</div>
+  
+</div>
+<div class="finding" style="border-left: 4px solid #ffcc00">
+  <div class="finding-header">
+    <span class="rule-id">TF040</span>
+    <span class="severity" style="color:#ffcc00">🟡 MEDIUM</span>
+    <span class="title">EC2 Instance Has Public IP</span>
+  </div>
+  <div class="meta">
+    <span>📁 /Users/ramziee24/Documents/GitHub/cloud-scanner/cloud-scanner/sample_configs/main.tf</span>
+    <span>📦 aws_instance.web_server</span>
+  </div>
+  <div class="evidence"><code>associate_public_ip_address = true</code></div>
+  <div class="description">EC2 instance is configured with a public IP address.</div>
+  
+</div>
+</body></html>
